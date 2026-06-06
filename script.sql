@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS prestamos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    cliente_id INT NOT NULL,
+    monto DECIMAL(10,2) NOT NULL,
+    plazo INT NOT NULL,
+    interes DECIMAL(5,2) NOT NULL,
+    estado VARCHAR(50) NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
