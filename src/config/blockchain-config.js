@@ -1,4 +1,5 @@
-[
+// Configuracion del contrato inteligente para el backend
+export const CONTRATO_ABI = [
 	{
 		"inputs": [
 			{
@@ -99,4 +100,8 @@
 		"stateMutability": "view",
 		"type": "function"
 	}
-]
+];
+
+export const CONTRATO_DIRECCION = "0x6b38FeA3b31DC4C44e03327aA5d3A1ea3669C757";// Direccion del contrato desplegado
+
+export const GANACHE_URL = "http://localhost:7545";

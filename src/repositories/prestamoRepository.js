@@ -15,7 +15,7 @@ const PrestamoRepository = {
     insert: async (data) => {
 
         const {
-            clienteId,
+            cliente_id,
             monto,
             plazo,
             interes,
@@ -28,7 +28,7 @@ const PrestamoRepository = {
             (cliente_id,monto,plazo,interes,estado)
             VALUES (?,?,?,?,?)`,
             [
-                clienteId,
+                cliente_id,
                 monto,
                 plazo,
                 interes,
@@ -56,7 +56,7 @@ const PrestamoRepository = {
     update: async (id,data) => {
 
         const {
-            clienteId,
+            cliente_id,
             monto,
             plazo,
             interes,
@@ -72,7 +72,7 @@ const PrestamoRepository = {
                 estado=?
             WHERE id=?`,
             [
-                clienteId,
+                cliente_id,
                 monto,
                 plazo,
                 interes,
@@ -89,6 +89,19 @@ const PrestamoRepository = {
         await connection.promise().query(
             'DELETE FROM prestamos WHERE id=?',
             [id]
+        );
+
+    },
+
+    updateTxHash: async (id, txHash) => {
+
+        await connection.promise().query(
+            `
+            UPDATE prestamos
+            SET tx_hash_block = ?
+            WHERE id = ?
+            `,
+            [txHash, id]
         );
 
     }

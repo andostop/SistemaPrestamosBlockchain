@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prestamos</title>
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body class="container mt-2">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-center">Prestamos</h1>
+        </div>
+        <div class="card-body">
+            <div>            
+                <div class="mb-3">
+                    <label for="cliente_id" class="form-label"> CLIENTE ID </label>
+                    <input type="number" class="form-control" id="cliente_id"> 
+                </div>
+            </div>
+            <div>
+                <div class="mb-3">
+                    <label for="monto" class="form-label"> MONTO </label>
+                    <input type="number" class="form-control" id="monto">
+                </div>
+            </div>
+            <div>           
+                <div class="mb-3">
+                    <label for="plazo" class="form-label"> PLAZO (MESES) </label>
+                    <input type="number" class="form-control" id="plazo">
+                </div>
+            </div>
+            <div>   
+                <div class="mb-3">
+                    <label for="interes" class="form-label"> INTERÉS </label>
+                    <input type="number" step="0.01" class="form-control" id="interes">
+                </div>
+            </div> 
+            <div>    
+                <div class="mb-3">
+                    <label for="estado" class="form-label"> ESTADO </label>
+                    <select id="estado" class="form-control">
+                        <option value="PENDIENTE">
+                            PENDIENTE
+                        </option>
+
+                        <option value="PAGADO">
+                            PAGADO
+                        </option>
+
+                    </select>
+
+                </div>
+            </div>    
+            <button class="btn btn-primary" onclick="guardarPrestamo()">GUARDAR</button>
+            <button class="btn btn-secondary" onclick="cancelar()">CANCELAR</button>
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="prestamo-form.js"></script>

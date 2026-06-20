@@ -11,17 +11,25 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 </head>
 <body class="container mt-2">
     <div class="card">
         <div class="card-header">
+            <div clas="text-start">
+                <small class="text-muted">Cuenta conectada:</small>
+                <code id="cuentaConectada" class="text-danger">Conectando...</code>
+            </div>
             <h1 class="text-center">Prestamos</h1>
         </div>
         <div class="card-body">
+            <!-- botones -->
             <div class="mb-3">
-                <button id="btnAgregar" class="btn btn-info btn-sm" onclick="buscarPrestamo()">BUSCAR</button>
-                <button id="btnAgregar" class="btn btn-success btn-sm" onclick=agregarPrestamo()">NUEVO</button>
+                <button id="btnBuscar" class="btn btn-info btn-sm" onclick="buscarPrestamos()">BUSCAR</button>
+                <button id="btnNuevo" class="btn btn-success btn-sm" onclick="agregarPrestamo()">NUEVO</button>
             </div>
+
+            <!-- tabla -->
             <div class="table-responsive">
                 <table id="facturasTable" class="table table-bordered table-hover table-sm">
                     <thead>
@@ -32,15 +40,14 @@
                             <th>PLAZO</th>
                             <th>INTERES</th>
                             <th>ESTADO</th>
+                            <th>ACCIONES</th>
                         </tr>
                     </thead>
                     <tbody id="prestamosBody">
-
                     </tbody>
                 </table>
             </div>
         </div>
-
     </div>
     
 </body>

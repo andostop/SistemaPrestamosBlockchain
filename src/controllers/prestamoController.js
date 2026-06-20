@@ -1,89 +1,110 @@
-import PrestamoRepository from '../repositories/prestamoRepository.js';
+import PrestamoService from '../services/prestamoService.js';
+import {CONTRATO_ABI, CONTRATO_DIRECCION} from '../config/blockchain-config.js';
 
-// GET TODOS
-export const obtenerPrestamos = async (req, res) => {
-    try {
+const PrestamoController = {
 
-        const prestamos =
-        await PrestamoRepository.findAll();
+    getAll: async (req,res) => {
 
-        res.json(prestamos);
+        const result =
+        await PrestamoService.getAll();
 
-    } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
-    }
-};
-// POST
-export const crearPrestamo = async (req, res) => {
-    try {
+        res.json(result);
 
-        const prestamo =
-        await PrestamoRepository.insert(req.body);
+    },
 
-        res.status(201).json(prestamo);
+    create: async (req,res) => {
 
-    } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
-    }
-};
+        const result =
+        await PrestamoService.create(
+            req.body
+        );
 
-// GET POR ID
-export const obtenerPrestamo = async (req, res) => {
-    try {
+        res.json(result);
 
-        const prestamo =
-        await PrestamoRepository.findById(req.params.id);
+    },
 
-        if (!prestamo) {
-            return res.status(404).json({
-                mensaje: "Préstamo no encontrado"
-            });
-        }
+    getById: async (req,res) => {
 
-        res.json(prestamo);
+        const result =
+        await PrestamoService.getById(
+            req.params.id
+        );
 
-    } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
-    }
-};
+        res.json(result);
 
-// PUT
-export const actualizarPrestamo = async (req, res) => {
-    try {
+    },
 
-        const prestamo =
-        await PrestamoRepository.update(
+    update: async (req,res) => {
+
+        const result =
+        await PrestamoService.update(
             req.params.id,
             req.body
         );
 
-        res.json(prestamo);
+        res.json(result);
 
-    } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
-    }
-};
-// DELETE
-export const eliminarPrestamo = async (req, res) => {
-    try {
+    },
 
-        await PrestamoRepository.delete(req.params.id);
+    delete: async (req,res) => {
+
+        const result =
+        await PrestamoService.delete(
+            req.params.id
+        );
+
+        res.json(result);
+
+    },
+
+    updateTxHash: async (req,res) => {
+
+        const { txHash } =
+        req.body;
+
+        const result =
+        await PrestamoService.updateTxHash(
+            req.params.id,
+            txHash
+        );
+
+        res.json(result);
+
+    },
+
+    getContractConfig: async (req,res) => {
 
         res.json({
-            mensaje: "Préstamo eliminado"
+            abi: CONTRATO_ABI,
+            address: CONTRATO_DIRECCION
         });
 
-    } catch (error) {
-        res.status(500).json({
-            error: error.message
-        });
+    },
+
+    validarBlockchain: async (req, res) => {
+        try {
+
+            const result =
+            await PrestamoService.validarBlockchain(
+                req.params.id
+            );
+
+            res.json(result);
+
+        } catch (error) {
+
+            console.error(
+                'Error al validar en blockchain:',
+                error
+            );
+
+            res.status(500).json({
+                error: error.message
+            });
+
+        }
     }
+
 };
+
+export default PrestamoController;
