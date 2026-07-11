@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Web3JS -->
+    <script src=" https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
+    <!-- Estilo extra -->
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .card-header {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            color: white;
+            border-radius: 16px 16px 0 0 !important;
+            padding: 20px;
+        }
+        .card-header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        .card-header h4 {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .btn {
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        .table {
+            margin-top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .table thead {
+            background: #1e293b;
+            color: white;
+        }
+        .table tbody tr:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        .btn-sm {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-start py-4">
+
+    <div class="card w-75">
+
+        <div class="card-header text-center">
+            <h1><i class="bi bi-cash-coin"></i> Sistema de Préstamos</h1>
+            <h4>Módulo de Pagos</h4>
+            <div class="text-start">
+            <small class="text-muted">Cuenta conectada:</small>
+            <code id="cuentaConectada" class="text-danger">Conectando...</code>
+        </div>
+        </div>
+
+        <div class="card-body bg-light text-dark">
+
+            <div class="d-flex justify-content-between mb-3">
+                <button class="btn btn-primary btn-sm" onclick="buscarPagos()">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+
+                <button class="btn btn-success btn-sm" onclick="agregarPago()">
+                    <i class="bi bi-plus-circle"></i> Nuevo
+                </button>
+            </div>
+
+            <div class="table-responsive">
+
+                <table id="pagosTable" class="table table-hover align-middle shadow-sm">
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>CLIENTE</th>
+                            <th>PRÉSTAMO</th>
+                            <th>MONTO PAGADO</th>
+                            <th>SALDO RESTANTE</th>
+                            <th>FECHA</th>
+                            <th>MÉTODO</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="pagosBody">
+                        <!-- dinámico -->
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="pagos.js"></script>
+
+</html>
